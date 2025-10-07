@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Wellness</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        table { border-collapse: collapse; width: 70%; margin-bottom: 30px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        h1, h2 { color: #333; }
+        input[type="number"], input[type="date"] { width: 100%; padding: 5px; }
+        form { margin-bottom: 30px; width: 70%; }
+        input[type="submit"] { padding: 10px 20px; }
+    </style>
+</head>
+<body>
+    <h1>Weekly Student Wellness Log</h1>
+    
+    <form method="POST">
+        <label>Date:</label>
+        <input type="date" name="date" required><br><br>
+        
+        <label>Sleep Hours:</label>
+        <input type="number" step="0.1" name="sleep" required><br><br>
+        
+        <label>Physical Activity Hours:</label>
+        <input type="number" step="0.1" name="physical" required><br><br>
+        
+        <label>Study Hours:</label>
+        <input type="number" step="0.1" name="study" required><br><br>
+        
+        <input type="submit" value="Add Log">
+    </form>
+    
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Sleep Hours</th>
+            <th>Physical Activity Hours</th>
+            <th>Study Hours</th>
+        </tr>
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.date }}</td>
+            <td>{{ log.sleep }}</td>
+            <td>{{ log.physical }}</td>
+            <td>{{ log.study }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Burnout Prediction: {{ prediction }}</h2>
+</body>
+</html>
